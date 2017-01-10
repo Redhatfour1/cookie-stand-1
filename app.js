@@ -1,3 +1,5 @@
+'use strict';
+
 var firstPike = {
   minCust: 23,
   maxCust: 65,
@@ -9,7 +11,7 @@ var firstPike = {
   },
 
   simulatedPurchased: function() {
-    hourlyArray = [];   //somehow this is turning into a string!  :(
+    var hourlyArray = [];   //somehow this is turning into a string!  :(
     for(index = 0; index < 15; index++) {
       var cookiesPerHour = this.averageCookiePerSale * this.randomCustomers();
       console.log(cookiesPerHour);
