@@ -1,7 +1,11 @@
-h1 {
+#logo {
   font-family: 'Cinzel Decorative', cursive;
   font-size: 60px;
   text-align: center;
+  background-image: image(http://tinypic.com?ref=2rmtj6x" target="_blank"><img src="http://i63.tinypic.com/2rmtj6x.png" border="0" alt="Image and video hosting by TinyPic"></a>
+  <div id="data">);
+  padding: 0;
+  margin: 0;
 }
 
 h3 {
@@ -23,3 +27,9 @@ ul {
 * {
   background-color: #ffeee2;
 }
+
+#data {
+  background-color: #E2F3FF;
+}
+
+/*background image for header can be the fish image*/
