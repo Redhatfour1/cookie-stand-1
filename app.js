@@ -1,5 +1,7 @@
 'use strict';
 
+var times = ['6 a.m.:', '7 a.m.', '8 a.m.', '9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.'];
+
 var firstPike = {
   minCust: 23,
   maxCust: 65,
@@ -12,7 +14,7 @@ var firstPike = {
 
   simulatedPurchased: function() {
     var hourlyArray = [];   //somehow this is turning into a string!  :(
-    for(index = 0; index < 15; index++) {
+    for(index = 0; index <= times.length; index++) {
       var cookiesPerHour = this.averageCookiePerSale * this.randomCustomers();
       console.log(cookiesPerHour);
       hourlyArray.push(parseInt(cookiesPerHour.toFixed(0))); //math.floor?
@@ -21,8 +23,6 @@ var firstPike = {
     return hourlyArray;
   }
 };
-
-var times = ['6 a.m.:', '7 a.m.', '8 a.m.', '9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.'];
 
 var firstPikeHourly = firstPike.simulatedPurchased();
 var firstPikeDaily = document.getElementById('firstPike');
@@ -46,7 +46,7 @@ for (var index = 0; index < firstPikeHourly.length; index++) {
 }
 
 var totalListItem = document.createElement('li');
-listElement.textContent = 'Total: ' + sum + 'cookies';
+listElement.textContent = 'Total: ' + sum + ' cookies';
 firstPikeDaily.appendChild(totalListItem);   //this is replacing 8p.m., not adding to it :(
 
 var seaTac = {
