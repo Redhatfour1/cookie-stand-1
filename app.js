@@ -121,6 +121,23 @@ function addFirstColumn() {
     y.innerHTML = x;
   }
 }
+var formEl = document.getElementById('new-form');
+
+formEl.addEventListener('submit', function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  renderStorename(event.target.storename.value);
+}, false);
+
+function renderStorename(storename) {
+  var sectionEl = document.getElementById('new-form');
+  var storeNameEl = document.createElement('tr');
+  storeNameEl.setAttribute('class', 'entered-store-name');
+  storeNameEl.textContent = storename;
+  tableEl.appendChild(storeNameEl);
+
+}
 
 // OLD CODE FROM MONDAY
 // var firstPikeHourly = firstPike.simulatedPurchased();
