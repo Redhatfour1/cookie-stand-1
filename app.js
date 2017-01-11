@@ -15,7 +15,7 @@ var seattleCenter = new Stores('seattleCenter', 11, 38, 3.7);
 var capitolHill = new Stores('capitolHill', 20, 38, 2.3);
 var alki = new Stores('alki', 2, 16, 4.6);
 
-var times = ['6 a.m.:', '7 a.m.', '8 a.m.', '9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.'];
+var times = ['6 a.m.:', '7 a.m.', '8 a.m.', '9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.', 'Total'];
 
 Stores.prototype.randomCustomers = function() {
   return Math.round(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
@@ -24,7 +24,7 @@ Stores.prototype.randomCustomers = function() {
 
 Stores.prototype.simulatedPurchased = function() {
   var hourlyArray = [];   //somehow this is turning into a string!  :(
-  for(var index = 0; index <= times.length; index++) {
+  for(var index = 0; index <= times.length - 1; index++) {
     var cookiesPerHour = this.averageCookiePerSale * this.randomCustomers();
     console.log('cookies per hour: ' + cookiesPerHour);
     hourlyArray.push(parseInt(cookiesPerHour.toFixed(0)));
@@ -42,6 +42,8 @@ function hourlyData(x) {
     return parseInt(a) + parseInt(b);
   }, 0);
 
+  var timesArray = [];
+
   for(var index = 0; index < hourly.length; index++) {
     console.log('Hourly: ' + hourly[index]);
     var listElement = document.createElement('li');
@@ -49,18 +51,45 @@ function hourlyData(x) {
     listElement.textContent = times[index] + ' : ' + hourly[index] + ' cookies';
 
     daily.appendChild(listElement);
+
+    timesArray.push(hourly[index]);
   }
 
   var totalListItem = document.createElement('li');
   listElement.textContent = 'Total: ' + sum + ' cookies';
   //daily.appendChild(totalListItem);
+  return timesArray;
 };
 
-hourlyData(firstPike);
-hourlyData(seaTac);
-hourlyData(seattleCenter);
-hourlyData(capitolHill);
-hourlyData(alki);
+var firstPikeArray = hourlyData(firstPike);
+var seaTacArray = hourlyData(seaTac);
+var seattleCenterArray = hourlyData(seattleCenter);
+var capitolHillArray = hourlyData(capitolHill);
+var alkiArray = hourlyData(alki);
+
+//code to take this information and put in into the table
+
+var tableData = [times, firstPikeArray, seaTacArray, seattleCenterArray, capitolHillArray, alkiArray];
+
+console.log('tableData:' + tableData);
+var tableEl = document.getElementById('table-data');
+console.log('tableEl: ' + tableEl);
+for(var i = 0; i < tableData.length; i++) {
+  var rowData = tableData[i];
+  console.log('rowData: ' + rowData);
+  var rowEl = document.createElement('tr');
+  console.log('rowEl: ' + rowEl);
+  for (var j = 0; j < rowData.length; j++) {
+    var rowContent = rowData[j];
+    console.log('rowContent: ' + rowContent);
+    var dataEl = document.createElement('td');
+    dataEl.textContent = rowContent;
+
+    rowEl.appendChild(dataEl);
+  }
+
+  tableEl.appendChild(rowEl);
+}
 
 // var firstPikeHourly = firstPike.simulatedPurchased();
 //
