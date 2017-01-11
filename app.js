@@ -16,6 +16,7 @@ var capitolHill = new Stores('capitolHill', 20, 38, 2.3);
 var alki = new Stores('alki', 2, 16, 4.6);
 
 var times = ['6 a.m.:', '7 a.m.', '8 a.m.', '9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.', 'Total'];
+var totalRow = ['Totals:'];
 
 Stores.prototype.randomCustomers = function() {
   return Math.round(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
@@ -69,7 +70,7 @@ var alkiArray = hourlyData(alki);
 
 //code to take this information and put in into the table
 
-var tableData = [times, firstPikeArray, seaTacArray, seattleCenterArray, capitolHillArray, alkiArray];
+var tableData = [times, firstPikeArray, seaTacArray, seattleCenterArray, capitolHillArray, alkiArray, totalRow];
 
 console.log('tableData:' + tableData);
 var tableEl = document.getElementById('table-data');
@@ -91,6 +92,31 @@ for(var i = 0; i < tableData.length; i++) {
   tableEl.appendChild(rowEl);
 }
 
+//ATTEMPT TO ADD TOTALS, DIDN'T WORK THOUGH
+// var columnTotals = function() {
+//   var tableTotals = document.getElementsByTagName('td');
+//   for (m = 1; m < times.length; m++) {  //access index 1 because index 0 is the time of day
+//     var eachColumnTotal = tableTotals[m];
+//     function(m) {
+//       var sum = sum + td[m];
+//       var columIndex = document.createElement('td');
+//       columnIndex.textContent = sum[m];
+//
+//       eachColumnTotal.appendChild(columnIndex);
+//     }
+//   }
+// }
+
+//TRIED TO ADD LEFT-SIDE COLUMN WITH NAMES
+// function addFirstColumn() {
+//   var row = document.getElementById(x.name);
+//   for (var k = 0; k < tableData.length; k++){
+//     var y = row.insertCell(k);
+//     y.innerHTML = x;
+//   }
+// }
+
+// OLD CODE FROM MONDAY
 // var firstPikeHourly = firstPike.simulatedPurchased();
 //
 // var firstPikeDaily = document.getElementById('firstPike');
